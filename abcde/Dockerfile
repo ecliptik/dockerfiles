@@ -16,8 +16,8 @@ RUN apt update && apt install -y \
         abcde \
         faac \
         eject \
-        fdkaac \
-	&& rm -rf /var/lib/apt/lists/*
+        fdkaac \ &&
+        apt clean
 
 COPY .abcde.conf /root/
 
