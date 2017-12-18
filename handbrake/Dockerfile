@@ -24,7 +24,6 @@ WORKDIR /handbrake
 
 # Install runtime OS packages
 
-
 RUN set -ex && \
         runDeps=' \
                 gvfs \
