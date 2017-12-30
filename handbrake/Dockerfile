@@ -1,4 +1,4 @@
-# Run handbrake in a container
+# Run handbrake GUI in a container
 # docker run -it --rm \
 #        --net=host \
 #        --device=/dev/cdrom \
@@ -22,28 +22,87 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 WORKDIR /handbrake
 
-# Install runtime OS packages
+RUN apt update && \
+    apt install -y \
+          libmp3lame0 \
+          libvorbis0a \
+          libass5 \
+          libsamplerate0 \
+          libtheora0 \
+          libvorbisenc2 \
+          libx264-148  \
+          libjansson4 \
+          libopus0 \
+          libnotify4 \
+          libdbus-glib-1-2 \
+          libgstreamer-plugins-base1.0-0 \
+          libwebkitgtk-3.0-0 \
+        && \
+        apt clean
 
-RUN set -ex && \
-        runDeps=' \
-                gvfs \
-                fonts-liberation \
-                fonts-freefont-ttf \
-                fontconfig \
-                hicolor-icon-theme \
-                software-properties-common \
-        ' && \
-    apt update && \
-    apt install -y $runDeps && \
+FROM base AS build
+
+# Install build OS packages
+
+RUN apt update && \
+    apt install -y \
+          autoconf \
+          automake \
+          build-essential \
+	  cmake \
+          git \
+          libass-dev \
+          libbz2-dev \
+          libfontconfig1-dev \
+          libfreetype6-dev \
+          libfribidi-dev \
+          libharfbuzz-dev \
+          libjansson-dev \
+          libmp3lame-dev \
+          libogg-dev \
+          libopus-dev \
+          libsamplerate-dev \
+          libtheora-dev \
+          libtool \
+          libvorbis-dev \
+          libx264-dev \
+          libxml2-dev \
+          m4 \
+          make \
+          patch \
+          pkg-config \
+          python \
+          tar \
+          yasm \
+          zlib1g-dev \
+          libtool-bin \
+          intltool \
+          libappindicator-dev \
+          libdbus-glib-1-dev \
+          libglib2.0-dev \
+          libgstreamer1.0-dev \
+          libgstreamer-plugins-base1.0-dev \
+          libgtk-3-dev \
+ 	  libgudev-1.0-dev \
+          libnotify-dev \
+          libwebkitgtk-3.0-dev \
+          wget \
+          && \
     apt clean
+
+#Download source from Github
+RUN git clone https://github.com/HandBrake/HandBrake.git
+WORKDIR /handbrake/HandBrake
+RUN ./configure --launch-jobs=$(nproc) --launch
+RUN cd build && make install
 
 FROM base AS runtime
 
-#Install handbrake ppa
-RUN add-apt-repository ppa:stebbins/handbrake-releases && \
-    apt update && \
-    apt install -y handbrake-gtk handbrake-cli && \
-    apt clean
+COPY --from=build /handbrake/HandBrake/build/HandBrakeCLI /usr/local/bin
+COPY --from=build /handbrake/HandBrake/build/gtk/src/ghb /usr/local/bin
+
+RUN chmod +x /usr/local/bin/HandBrakeCLI
+RUN chmod +x /usr/local/bin/ghb
 
 # Copy font config
 COPY local.conf /etc/fonts/local.conf
