@@ -8,6 +8,12 @@
 #        --env="DISPLAY" \
 #        ecliptik/handbrake
 
+# Run HandBrakeCLI in a container
+# docker run -it --rm \
+#        --entrypoint=HandBrakeCLI \
+#        -v $HOME/handbrake:/handbrake \
+#        ecliptik/handbrake
+
 # This Dockerfile uses Docker Multi-Stage Builds
 # See https://docs.docker.com/engine/userguide/eng-image/multistage-build/
 
@@ -22,6 +28,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 WORKDIR /handbrake
 
+# Runtime packages
 RUN apt update && \
     apt install -y \
           libmp3lame0 \
@@ -37,13 +44,14 @@ RUN apt update && \
           libdbus-glib-1-2 \
           libgstreamer-plugins-base1.0-0 \
           libwebkitgtk-3.0-0 \
+          libdvd-pkg \
         && \
         apt clean
 
+# Build image
 FROM base AS build
 
-# Install build OS packages
-
+# Build packages
 RUN apt update && \
     apt install -y \
           autoconf \
@@ -96,11 +104,14 @@ WORKDIR /handbrake/HandBrake
 RUN ./configure --launch-jobs=$(nproc) --launch
 RUN cd build && make install
 
+# Runtime image
 FROM base AS runtime
 
+# Copy HandBrakeCLI and ghb binaries to runtime image
 COPY --from=build /handbrake/HandBrake/build/HandBrakeCLI /usr/local/bin
 COPY --from=build /handbrake/HandBrake/build/gtk/src/ghb /usr/local/bin
 
+# Make binaries executable
 RUN chmod +x /usr/local/bin/HandBrakeCLI
 RUN chmod +x /usr/local/bin/ghb
 
