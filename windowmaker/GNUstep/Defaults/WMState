@@ -1,0 +1,235 @@
+{
+  Dock = {
+    Applications1024 = (
+      {
+        Forced = No;
+        Name = Logo.WMDock;
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,0";
+        Lock = Yes;
+        Command = "/usr/bin/WPrefs";
+      },
+      {
+        Forced = No;
+        Name = "x-terminal-emulator.XTerm";
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,1";
+        Lock = No;
+        Command = "x-terminal-emulator";
+      },
+      {
+        Forced = No;
+        Name = wmnet.WMNET;
+        DropCommand = "wmnet %d";
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,2";
+        Lock = No;
+        PasteCommand = "wmnet %s";
+        Command = wmnet;
+      },
+      {
+        Forced = No;
+        Name = asmon.asmon;
+        DropCommand = "asmon %d";
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,3";
+        Lock = No;
+        PasteCommand = "asmon %s";
+        Command = asmon;
+      },
+      {
+        Forced = No;
+        Name = aterm.URxvt;
+        DropCommand = "aterm %d";
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,4";
+        Lock = No;
+        PasteCommand = "aterm %s";
+        Command = aterm;
+      },
+      {
+        Forced = No;
+        Name = midori.Midori;
+        DropCommand = "midori %d";
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,5";
+        Lock = No;
+        PasteCommand = "midori %s";
+        Command = midori;
+      }
+    );
+    AutoRaiseLower = No;
+    Applications = (
+      {
+        Forced = No;
+        Name = Logo.WMDock;
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,0";
+        Lock = Yes;
+        Command = "/usr/bin/WPrefs";
+      },
+      {
+        Forced = No;
+        Name = "x-terminal-emulator.XTerm";
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,1";
+        Lock = No;
+        Command = "x-terminal-emulator";
+      },
+      {
+        Forced = No;
+        Name = wmnet.WMNET;
+        DropCommand = "wmnet %d";
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,2";
+        Lock = No;
+        PasteCommand = "wmnet %s";
+        Command = wmnet;
+      },
+      {
+        Forced = No;
+        Name = asmon.asmon;
+        DropCommand = "asmon %d";
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,3";
+        Lock = No;
+        PasteCommand = "asmon %s";
+        Command = asmon;
+      },
+      {
+        Forced = No;
+        Name = aterm.URxvt;
+        DropCommand = "aterm %d";
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,4";
+        Lock = No;
+        PasteCommand = "aterm %s";
+        Command = aterm;
+      },
+      {
+        Forced = No;
+        Name = midori.Midori;
+        DropCommand = "midori %d";
+        BuggyApplication = No;
+        AutoLaunch = No;
+        Position = "0,5";
+        Lock = No;
+        PasteCommand = "midori %s";
+        Command = midori;
+      }
+    );
+    Lowered = No;
+    Position = "-64,0";
+  };
+  Clip = {
+    Forced = No;
+    Name = Logo.WMClip;
+    DropCommand = "wmsetbg -u -t %d";
+    BuggyApplication = No;
+    AutoLaunch = No;
+    Position = "1216,960";
+    Lock = No;
+    Command = "-";
+  };
+  Applications = (
+    {
+      Name = jedit.jedit;
+      Shaded = No;
+      Miniaturized = No;
+      Command = "/usr/lib/jvm/java-8-openjdk-amd64/bin/java -classpath /usr/share/jedit/jedit.jar org.gjt.sp.jedit.jEdit";
+      Geometry = "752x497+445+221";
+      Hidden = No;
+      Workspace = Main;
+      ShortcutMask = 0;
+    },
+    {
+      Dock = Dock;
+      Name = midori.Midori;
+      Shaded = No;
+      Miniaturized = No;
+      Command = midori;
+      Geometry = "935x854+0+0";
+      Hidden = No;
+      Workspace = Main;
+      ShortcutMask = 0;
+    },
+    {
+      Name = aterm.URxvt;
+      Shaded = No;
+      Miniaturized = No;
+      Command = "aterm -tr -sh 50 -fg yellow";
+      Geometry = "496x316+152+152";
+      Hidden = No;
+      Workspace = Main;
+      ShortcutMask = 0;
+    },
+    {
+      Name = aterm.URxvt;
+      Shaded = No;
+      Miniaturized = No;
+      Command = "aterm -tr -sh 50 -fg white";
+      Geometry = "496x316+276+641";
+      Hidden = No;
+      Workspace = Main;
+      ShortcutMask = 0;
+    },
+    {
+      Name = promoe.Promoe;
+      Shaded = No;
+      Miniaturized = No;
+      Command = promoe;
+      Geometry = "275x116+941+2";
+      Hidden = No;
+      Workspace = Main;
+      ShortcutMask = 0;
+    },
+    {
+      Dock = Dock;
+      Name = aterm.URxvt;
+      Shaded = No;
+      Miniaturized = No;
+      Command = "aterm -tr -sh 50 -fg white";
+      Geometry = "496x316+775+640";
+      Hidden = No;
+      Workspace = Main;
+      ShortcutMask = 0;
+    }
+  );
+  Drawers = ();
+  Workspaces = (
+    {
+      Clip = {
+        AutoRaiseLower = No;
+        AutoCollapse = No;
+        Applications = ();
+        Collapsed = No;
+        AutoAttractIcons = No;
+        Lowered = Yes;
+      };
+      Name = Main;
+    },
+    {
+      Clip = {
+        AutoRaiseLower = No;
+        AutoCollapse = No;
+        Applications = ();
+        Collapsed = No;
+        AutoAttractIcons = No;
+        Lowered = Yes;
+      };
+      Name = "Workspace 2";
+    }
+  );
+  Workspace = Main;
+}

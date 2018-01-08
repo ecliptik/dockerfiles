@@ -14,7 +14,7 @@ docker run -t --rm -d \
   -O \
   -2 \
   -T \
-  --all-subtitles \
   -s scan \
-  -i /handbrake/input.mkv \
-  -o /handbrake/output.mp4
+  --subtitle-forced \
+  -i /handbrake/Beauty_And_The_Beast_2014.mkv \
+  -o /handbrake/Beauty_And_The_Beast_2014.mp4
