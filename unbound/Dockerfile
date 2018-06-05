@@ -11,7 +11,7 @@ RUN apk add --no-cache unbound bind-tools
 COPY ./unbound.conf /etc/unbound/
 
 #Healthcheck
-HEALTHCHECK CMD dig @127.0.0.1 www.cloudflare.com || exit 1
+HEALTHCHECK CMD dig www.cloudflare.com || exit 1
 
 ENTRYPOINT ["/usr/sbin/unbound"]
 CMD ["-d", "-v"]
