@@ -1,0 +1,10 @@
+version: '3'
+services:
+  unbound:
+    build:
+      context: .
+    container_name: unbound
+    ports:
+      - 853:53/udp
+    command: -d -v
+    restart: unless-stopped
