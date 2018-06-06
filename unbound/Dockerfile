@@ -7,6 +7,9 @@ EXPOSE 53/udp
 #Install unbound
 RUN apk add --no-cache unbound bind-tools
 
+#Get initial DNSSEC anchor file
+RUN unbound-anchor
+
 #Copy unbound config file
 COPY ./unbound.conf /etc/unbound/
 
