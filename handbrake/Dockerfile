@@ -19,12 +19,14 @@
 
 ### Base Image
 # Setup up a base image to use in Build and Runtime images
-FROM ubuntu:16.04 AS base
+FROM ubuntu:18.04 AS base
 
 LABEL maintainer "Micheal Waltz <ecliptik@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    LANG=en-US
+    LANG=en-US \
+    LANGUAGE=en-US \
+    LC_ALL=en-US
 
 WORKDIR /handbrake
 
@@ -33,18 +35,21 @@ RUN apt update && \
     apt install -y \
           libmp3lame0 \
           libvorbis0a \
-          libass5 \
+          libass9 \
           libsamplerate0 \
           libtheora0 \
           libvorbisenc2 \
-          libx264-148  \
+          libx264-152 \
           libjansson4 \
+          liblzma5 \
+          lzma \
           libopus0 \
           libnotify4 \
           libdbus-glib-1-2 \
           libgstreamer-plugins-base1.0-0 \
           libwebkitgtk-3.0-0 \
           libdvd-pkg \
+          speex \
         && \
         apt clean
 
@@ -70,6 +75,11 @@ RUN apt update && \
           libogg-dev \
           libopus-dev \
           libsamplerate-dev \
+          libspeex-dev \
+          lzma-dev \
+          liblzma-dev \
+          python-speex \
+          libspeexdsp-dev \
           libtheora-dev \
           libtool \
           libvorbis-dev \
