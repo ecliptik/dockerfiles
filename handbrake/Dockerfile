@@ -101,7 +101,7 @@ RUN apt update && \
           libgstreamer1.0-dev \
           libgstreamer-plugins-base1.0-dev \
           libgtk-3-dev \
- 	  libgudev-1.0-dev \
+          libgudev-1.0-dev \
           libnotify-dev \
           libwebkitgtk-3.0-dev \
           wget \
