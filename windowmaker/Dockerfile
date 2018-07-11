@@ -36,8 +36,8 @@ RUN apt update && \
 
 #Install pactched version of v11vnc
 #See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=859213
-RUN curl -LO http://bernhard-ehlers.de/x11vnc/x11vnc_0.9.13-2.0_amd64.deb
-RUN curl -LO http://bernhard-ehlers.de/x11vnc/x11vnc-data_0.9.13-2.0_all.deb
+RUN curl -LO https://mirrors.edge.kernel.org/debian/pool/main/x/x11vnc/x11vnc_0.9.13-6_amd64.deb
+RUN curl -LO https://mirrors.edge.kernel.org/debian/pool/main/x/x11vnc/x11vnc-data_0.9.13-6_all.deb
 RUN dpkg --install *.deb && rm -fr *.deb
 
 #launch wmaker
@@ -46,4 +46,4 @@ RUN chmod +x /root/.xinitrc
 
 #Run supervisor since multiple processes are needed
 ENTRYPOINT [ "x11vnc" ]
-CMD [ "-forever", "-nopw", "-create", "-noxdamage", "-scale", "2880x1880", "-ncache_cr", "-norepeat" ]
+CMD [ "-forever", "-nopw", "-create", "-noxdamage", "-scale", "2880x1800", "-ncache_cr", "-norepeat" ]
