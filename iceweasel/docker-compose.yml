@@ -1,0 +1,13 @@
+version: '2'
+services:
+  iceweasel:
+    build:
+      context: .
+    stdin_open: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/root/.Xauthority
+      - $HOME/.config:/root/.config
+    environment:
+      - DISPLAY=${DISPLAY}
+    network_mode: "host"
