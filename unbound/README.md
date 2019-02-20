@@ -2,12 +2,20 @@
 
 Simple Docker container to run [unbound](https://unbound.net).
 
-Configuration is setup to use [Cloudflare DNS](https://1.1.1.1) for ipv4 and ipv6.
+Configuration is setup to use [Cloudflare DNS](https://1.1.1.1) for ipv4 and/or ipv6.
 
 Build image,
 
+IPV4
+
 ```
 docker build -t unbound .
+```
+
+IPV6
+
+```
+docker build -f Dockerfile.ipv6 unbound .
 ```
 
 Run in background and test on port 853,

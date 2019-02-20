@@ -11,7 +11,7 @@ RUN apk add --no-cache unbound bind-tools
 RUN unbound-anchor
 
 #Copy unbound config file
-COPY ./unbound.conf /etc/unbound/
+COPY ./unbound-ipv6.conf /etc/unbound/unbound.conf
 
 #Healthcheck
 HEALTHCHECK CMD dig www.cloudflare.com || exit 1
