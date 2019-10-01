@@ -3,7 +3,7 @@
 #        -v $(pwd)/GNUstep:/root/GNUstep \
 #        ecliptik/windowmaker
 
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer="Micheal Waltz <ecliptik@gmail.com>"
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -15,7 +15,7 @@ RUN apt update && \
     apt install -y wmaker \
                    midori \
                    surf \
-                   iceweasel \
+                   firefox-esr \
                    git \
                    libxtst6 \
                    net-tools \
