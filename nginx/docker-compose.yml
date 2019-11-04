@@ -1,0 +1,12 @@
+version: '2'
+services:
+  nginx:
+    build:
+      context: ./
+    ports:
+      - "8080:80"
+    logging:
+      driver: fluentd
+      options:
+        tag: "nginx-test.docker"
+        fluentd-sub-second-precision: "true"
