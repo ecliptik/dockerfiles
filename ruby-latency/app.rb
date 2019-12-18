@@ -7,3 +7,8 @@ get "/" do
   sleep 120
   halt 418, "I'm a teapot"
 end
+
+get "/health" do
+  status 200
+  body "Healthy"
+end
