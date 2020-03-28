@@ -1,0 +1,8 @@
+version: '2'
+services:
+  fah:
+    build:
+      context: .
+    stdin_open: true
+    volumes:
+      - /etc/fahclient/config.xml:/app/config.xml
