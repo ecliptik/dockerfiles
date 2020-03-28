@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gem 'rack-protection'
+gem 'sinatra'
+gem 'rack'
+gem 'httpclient'
