@@ -1,6 +1,6 @@
 # gmnisrv Docker
 
-Run [gmnisrv[(https://git.sr.ht/~sircmpwn/gmnisrv) in a Docker container.
+Run [gmnisrv](https://git.sr.ht/~sircmpwn/gmnisrv) in a Docker container.
 
 Features:
 - gmnisrv automatically creates certificates for sites at runtime
