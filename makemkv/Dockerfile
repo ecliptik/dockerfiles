@@ -1,5 +1,5 @@
 # Build makemkv image
-# docker built -t makemkv .
+# docker build -t makemkv .
 # Run makemkv in a container
 # docker run -it --rm \
 #        --net=host \
