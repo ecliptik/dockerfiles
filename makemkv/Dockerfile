@@ -25,9 +25,9 @@ LABEL maintainer "Micheal Waltz <ecliptik@gmail.com>"
 
 ENV MAKEMKV_VER="1.16.5" \
     DEBIAN_FRONTEND=noninteractive \
-    LANGUAGE=en_US.UTF-8 \
-    LC_ALL=en_US.UTF-8 \
-    LANG=en_US.UTF-8
+    LANGUAGE=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    LANG=C.UTF-8
 
 WORKDIR /makemkv
 
@@ -49,7 +49,7 @@ RUN apt-get update && \
 #Download and extract tarballs
 
 ### Build Image
-# Installs build dependencies and npm packages
+# Installs build dependencies
 # Creates artifacts to copy into Runtime image
 FROM base AS build
 
@@ -65,6 +65,8 @@ RUN apt-get update && \
           libexpat1-dev \
           libavcodec-dev \
           libgl1-mesa-dev \
+          libqt5gui5 \
+          libqt5opengl5-dev \
           qtbase5-dev \
           zlib1g-dev\
           && \
