@@ -1,15 +1,17 @@
+# Build makemkv image
+# docker build -t makemkv .
 # Run makemkv in a container
 # docker run -it --rm \
 #        --net=host \
 #        --device=/dev/cdrom \
 #        -v /tmp/.X11-unix:/tmp/.X11-unix \
 #        -v $HOME/.Xauthority:/root/.Xauthority \
-#        -v $HOME/.MakeMKV:/root/.MakeMKV
-#        -v `pwd`/makemkv:/makemkv
+#        -v $HOME/.MakeMKV:/root/.MakeMKV \
+#        -v `pwd`/makemkv:/makemkv \
 #        --env="DISPLAY" \
-#        ecliptik/makemkv
+#        makemkv
 
-# While in beta makemkv is free, find the registratio key here,
+# While in beta makemkv is free, find the registration key here,
 # https://www.makemkv.com/forum2/viewtopic.php?f=5&t=1053
 
 # This Dockerfile uses Docker Multi-Stage Builds
@@ -17,19 +19,21 @@
 
 ### Base Image
 # Setup up a base image to use in Build and Runtime images
-FROM debian:stretch AS base
+FROM debian:bullseye AS base
 
 LABEL maintainer "Micheal Waltz <ecliptik@gmail.com>"
 
-ENV MAKEMKV_VER="1.10.8" \
+ENV MAKEMKV_VER="1.16.5" \
     DEBIAN_FRONTEND=noninteractive \
-    LANG=en-US
+    LANGUAGE=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    LANG=C.UTF-8
 
 WORKDIR /makemkv
 
 # Install runtime OS packages
-RUN apt update && \
-    apt install -y \
+RUN apt-get update && \
+    apt-get install -y \
           libglib2.0-0 \
           libdbus-1-3 \
           libbsd0 \
@@ -40,18 +44,18 @@ RUN apt update && \
           hicolor-icon-theme \
           wget \
           && \
-    apt clean
+    apt-get clean
 
 #Download and extract tarballs
 
 ### Build Image
-# Installs build dependencies and npm packages
+# Installs build dependencies
 # Creates artifacts to copy into Runtime image
 FROM base AS build
 
 # Install build OS packages
-RUN apt update && \
-    apt install -y \
+RUN apt-get update && \
+    apt-get install -y \
           file \
           build-essential \
           pkg-config \
@@ -61,10 +65,12 @@ RUN apt update && \
           libexpat1-dev \
           libavcodec-dev \
           libgl1-mesa-dev \
-          libqt4-dev \
+          libqt5gui5 \
+          libqt5opengl5-dev \
+          qtbase5-dev \
           zlib1g-dev\
           && \
-    apt clean
+    apt-get clean
 
 #Download and extract tarballs
 RUN wget http://www.makemkv.com/download/makemkv-bin-$MAKEMKV_VER.tar.gz
