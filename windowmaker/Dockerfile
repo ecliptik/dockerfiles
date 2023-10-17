@@ -3,7 +3,7 @@
 #        -v $(pwd)/GNUstep:/root/GNUstep \
 #        ecliptik/windowmaker
 
-FROM debian:buster
+FROM debian:bookworm
 LABEL maintainer="Micheal Waltz <ecliptik@gmail.com>"
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -13,7 +13,6 @@ EXPOSE 5900
 #Install packages
 RUN apt update && \
     apt install -y wmaker \
-                   midori \
                    surf \
                    firefox-esr \
                    git \
@@ -26,7 +25,6 @@ RUN apt update && \
                    wmnet \
                    wmmemload \
                    asmon \
-                   aterm \
                    x11-apps \
                    tk \
                    libvncclient1 \
@@ -36,8 +34,8 @@ RUN apt update && \
 
 #Install pactched version of v11vnc
 #See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=859213
-RUN curl -LO https://mirrors.edge.kernel.org/debian/pool/main/x/x11vnc/x11vnc_0.9.13-6_amd64.deb
-RUN curl -LO https://mirrors.edge.kernel.org/debian/pool/main/x/x11vnc/x11vnc-data_0.9.13-6_all.deb
+RUN curl -LO https://mirrors.edge.kernel.org/debian/pool/main/x/x11vnc/x11vnc_0.9.16-9_$(dpkg --print-architecture).deb
+RUN curl -LO https://mirrors.edge.kernel.org/debian/pool/main/x/x11vnc/x11vnc-data_0.9.13-6%2Bdeb10u1_all.deb
 RUN dpkg --install *.deb && rm -fr *.deb
 
 #launch wmaker
